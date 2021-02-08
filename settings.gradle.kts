@@ -7,4 +7,4 @@
  * in the user guide at https://docs.gradle.org/4.10.1/userguide/multi_project_builds.html
  */
 
-rootProject.name = "detekt-kdoc-formatted-document-ruleset"
+rootProject.name = "detekt-kdoc-ruleset"
