@@ -1,21 +1,21 @@
-package com.github.duck8823.kdoc_formatted_document_ruleset.rules
+package com.github.duck8823.kdoc_ruleset.rules
 
 import io.gitlab.arturbosch.detekt.test.lint
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-internal class MismatchReturnTagPublicFunctionTest {
+internal class MismatchParamTagPublicFunctionTest {
 
     @Test
     fun shouldReportWithoutDocument() {
         // given
-        val sut = MismatchReturnTagPublicFunction()
+        val sut = MismatchParamTagPublicFunction()
 
         // when
         val actual = sut.lint("""
             class Hoge {
             
-                fun hoge(): Int {
+                fun hoge(foo: String, bar: String): Int {
                     return 1
                 }
                 
@@ -31,9 +31,9 @@ internal class MismatchReturnTagPublicFunctionTest {
     }
 
     @Test
-    fun shouldReportWithoutReturnTag() {
+    fun shouldReportWithMismatchedParamTag() {
         // given
-        val sut = MismatchReturnTagPublicFunction()
+        val sut = MismatchParamTagPublicFunction()
 
         // when
         val actual = sut.lint("""
@@ -43,7 +43,26 @@ internal class MismatchReturnTagPublicFunctionTest {
                  * hoge is a function.
                  *
                  */
-                fun hoge(): Int {
+                fun hoge(foo: String, bar: String): Int {
+                    return 1
+                }
+                
+                /**
+                 * hoge is a function.
+                 *
+                 * @param bar It is bar.
+                 * @param foo It is foo.
+                 */
+                fun hoge(foo: String, bar: String): Int {
+                    return 1
+                }                
+            
+                /**
+                 * hoge is a function.
+                 *
+                 * @param bar It is a wrong name.
+                 */
+                fun hoge(foo: String): Int {
                     return 1
                 }
                 
@@ -52,20 +71,20 @@ internal class MismatchReturnTagPublicFunctionTest {
                  *
                  * private fun is not reported
                  */
-                private fun hoge(): Int {
+                private fun hoge(foo: String. bar: String): Int {
                     return 1
                 }
             }
         """.trimIndent())
 
         // then
-        assertThat(actual).hasSize(1)
+        assertThat(actual).hasSize(3)
     }
 
     @Test
     fun shouldNotReportWithCorrectReturnTag() {
         // given
-        val sut = MismatchReturnTagPublicFunction()
+        val sut = MismatchParamTagPublicFunction()
 
         // when
         val actual = sut.lint("""
@@ -74,9 +93,11 @@ internal class MismatchReturnTagPublicFunctionTest {
                 /**
                  * hoge is a function.
                  *
+                 * @param foo It is foo.
+                 * @param bar It is bar.
                  * @return 1
                  */
-                fun hoge(): Int {
+                fun hoge(foo: String, bar: String): Int {
                     return 1
                 }
                 

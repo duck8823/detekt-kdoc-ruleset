@@ -1,6 +1,6 @@
-package com.github.duck8823.kdoc_formatted_document_ruleset
+package com.github.duck8823.kdoc_ruleset
 
-import com.github.duck8823.kdoc_formatted_document_ruleset.rules.MismatchReturnTagPublicFunction
+import com.github.duck8823.kdoc_ruleset.rules.MismatchReturnTagPublicFunction
 import io.gitlab.arturbosch.detekt.api.Config
 import io.gitlab.arturbosch.detekt.api.RuleSet
 import io.gitlab.arturbosch.detekt.api.RuleSetProvider

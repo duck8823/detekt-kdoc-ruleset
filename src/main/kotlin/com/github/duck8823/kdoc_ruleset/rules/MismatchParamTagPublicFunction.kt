@@ -1,6 +1,6 @@
-package com.github.duck8823.kdoc_formatted_document_ruleset.rules
+package com.github.duck8823.kdoc_ruleset.rules
 
-import com.github.duck8823.kdoc_formatted_document_ruleset.shouldBeDocumented
+import com.github.duck8823.kdoc_ruleset.shouldBeDocumented
 import io.gitlab.arturbosch.detekt.api.CodeSmell
 import io.gitlab.arturbosch.detekt.api.Debt
 import io.gitlab.arturbosch.detekt.api.Entity
