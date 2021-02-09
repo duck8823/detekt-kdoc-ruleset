@@ -36,7 +36,7 @@ class MismatchReturnTagPublicFunction : Rule() {
         }
 
 
-        if (function.typeReference == null && (function.docComment != null && !function.docComment!!.text.contains("@return"))) {
+        if (function.typeReference == null && (function.docComment != null && function.docComment!!.text.contains("@return"))) {
             report(CodeSmell(
                 issue,
                 Entity.atName(function),

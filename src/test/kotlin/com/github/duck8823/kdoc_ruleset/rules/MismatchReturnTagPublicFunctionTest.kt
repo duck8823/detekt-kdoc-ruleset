@@ -20,7 +20,7 @@ internal class MismatchReturnTagPublicFunctionTest {
                 }
                 
                 // private fun is not reported
-                private fun fuga() Int {
+                private fun fuga(): Int {
                     return 1
                 }
             }
@@ -63,6 +63,39 @@ internal class MismatchReturnTagPublicFunctionTest {
     }
 
     @Test
+    fun shouldReportWithRedundantReturnTag() {
+        // given
+        val sut = MismatchReturnTagPublicFunction()
+
+        // when
+        val actual = sut.lint("""
+            class Hoge {
+            
+                /**
+                 * hoge is a function.
+                 *
+                 * @return Nothing
+                 */
+                fun hoge() {
+                    // nothing to do.
+                }
+                
+                /**
+                 * hoge is a function.
+                 *
+                 * @return Nothing
+                 */
+                private fun hoge() {
+                    // nothing to do
+                }
+            }
+        """.trimIndent())
+
+        // then
+        assertThat(actual).hasSize(1)
+    }
+
+    @Test
     fun shouldNotReportWithCorrectReturnTag() {
         // given
         val sut = MismatchReturnTagPublicFunction()
@@ -79,7 +112,15 @@ internal class MismatchReturnTagPublicFunctionTest {
                 fun hoge(): Int {
                     return 1
                 }
-                
+               
+                /**
+                 * hoge is a function
+                 *
+                 * @param foo It is foo.
+                 */
+                fun hoge(foo: String) {
+                    // nothing to do.
+                }
             }
         """.trimIndent())
 
