@@ -11,6 +11,17 @@ jobs:
     steps:
       - run: echo "Run"
 
+  lint:
+    needs: run-check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/setup-detekt
+        with:
+          detekt-version: v1.15.0
+      - run: ./gradlew assemble
+      - run: detekt --plugins build/libs/detekt-kdoc-ruleset-*.jar
+
   test:
     needs: run-check
     runs-on: ubuntu-latest

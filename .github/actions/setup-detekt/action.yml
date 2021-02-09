@@ -1,0 +1,17 @@
+name: 'Setup Detekt'
+description: 'Install Detekt CLI'
+inputs:
+  detekt-version:
+    description: 'Version of Detekt'
+    required: true
+runs:
+  using: "composite"
+  steps:
+    - run: |
+        mkdir -p $HOME/detekt/${{ inputs.detekt-version }}/bin
+        curl -sSL https://github.com/detekt/detekt/releases/download/${{ inputs.detekt-version }}/detekt -o $HOME/detekt/${{ inputs.detekt-version }}/bin/detekt
+        chmod +x $HOME/detekt/${{ inputs.detekt-version }}/bin/detekt
+        echo "$HOME/detekt/${{ inputs.detekt-version }}/bin" >> $GITHUB_PATH
+      shell: bash
+    - run: detekt --version
+      shell: bash
