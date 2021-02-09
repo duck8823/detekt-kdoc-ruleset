@@ -20,7 +20,7 @@ jobs:
         with:
           detekt-version: v1.15.0
       - run: ./gradlew assemble
-      - run: detekt --plugins build/libs/detekt-kdoc-ruleset-*.jar
+      - run: detekt --plugins build/libs/detekt-kdoc-ruleset-*.jar --config detect-confg.yml
 
   test:
     needs: run-check
