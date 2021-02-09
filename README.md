@@ -1,7 +1,6 @@
-# detekt-extensions
+# detekt-kdoc-ruleset
 
-This is extensions for [detekt](https://github.com/arturbosch/detekt).  
-This RuleSet reports mismatched [KDoc](https://kotlinlang.org/docs/reference/kotlin-doc.html#block-tags) block tags.
+This is extensions for [detekt](https://github.com/arturbosch/detekt) which reports mismatched [KDoc](https://kotlinlang.org/docs/reference/kotlin-doc.html#block-tags) block tags.
 
 ## Usage
 ### build.gradle
