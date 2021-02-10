@@ -13,7 +13,7 @@ plugins {
 }
 
 group = "com.github.duck8823"
-version = "0.0.2-SNAPSHOT"
+version = "0.0.2"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 repositories {
