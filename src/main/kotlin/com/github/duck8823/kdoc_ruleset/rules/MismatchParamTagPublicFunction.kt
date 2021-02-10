@@ -34,14 +34,6 @@ class MismatchParamTagPublicFunction : Rule() {
 
         val params = function.valueParameters.map { it.nameAsSafeName.toString() }
 
-        if (params.isEmpty() && (function.docComment != null && !function.docComment!!.text.contains("@param"))) {
-            report(CodeSmell(
-                issue,
-                Entity.atName(function),
-                "The function ${function.nameAsSafeName} has redundant @param block."
-            ))
-        }
-
         if (params != function.docComment.line.mapNotNull(paramTagPattern::find).map { it.groupValues[1] }) {
             report(CodeSmell(
                 issue,

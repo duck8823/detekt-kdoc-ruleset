@@ -56,10 +56,14 @@ internal class MismatchReturnTagPublicFunctionTest {
                     return 1
                 }
             }
+                        
+            interface Fuga {
+                fun fuga(): String
+            }
         """.trimIndent())
 
         // then
-        assertThat(actual).hasSize(1)
+        assertThat(actual).hasSize(2)
     }
 
     @Test
@@ -89,10 +93,19 @@ internal class MismatchReturnTagPublicFunctionTest {
                     // nothing to do
                 }
             }
+
+            interface Fuga {
+                /**
+                 * fuga is a function.
+                 * 
+                 * @return Nothing
+                 */
+                fun fuga()
+            }
         """.trimIndent())
 
         // then
-        assertThat(actual).hasSize(1)
+        assertThat(actual).hasSize(2)
     }
 
     @Test
@@ -121,6 +134,15 @@ internal class MismatchReturnTagPublicFunctionTest {
                 fun hoge(foo: String) {
                     // nothing to do.
                 }
+            }
+
+            interface Fuga {
+                /**
+                 * fuga is a function.
+                 * 
+                 * @return Empty String
+                 */
+                fun fuga(): String
             }
         """.trimIndent())
 

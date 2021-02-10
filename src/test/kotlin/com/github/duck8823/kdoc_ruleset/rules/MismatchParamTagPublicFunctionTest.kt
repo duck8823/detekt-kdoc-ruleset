@@ -102,6 +102,15 @@ internal class MismatchParamTagPublicFunctionTest {
                 }
                 
             }
+            
+            interface Fuga {
+                /**
+                 * fuga is a function.
+                 * 
+                 * @return Empty String
+                 */
+                fun fuga(): String
+            }
         """.trimIndent())
 
         // then
